@@ -1,0 +1,620 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <!-- Site Metas -->
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/gif"/>
+
+    <title>Shapel</title>
+
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}"/>
+
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet"/>
+
+    <!-- lightbox Gallery-->
+    <link rel="stylesheet" href="{% static 'css/ekko-lightbox.css' %}"/>
+
+    <!-- font awesome style -->
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet"/>
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet"/>
+    <!-- responsive style -->
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet"/>
+    <style>
+        body {
+          background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<!--   header section strats-->
+<!--  <header class="header_section">-->
+<!--    <div class="container-fluid">-->
+<!--      <nav class="navbar navbar-expand-lg custom_nav-container">-->
+<!--        <a class="navbar-brand" href="base.html">-->
+
+<!--        </a>-->
+<!--        <div class="" id="">-->
+
+<!--          <div class="custom_menu-btn">-->
+<!--            <button onclick="openNav()">-->
+<!--              <span class="s-1"> </span>-->
+<!--              <span class="s-2"> </span>-->
+<!--              <span class="s-3"> </span>-->
+<!--            </button>-->
+<!--            <div id="myNav" class="overlay">-->
+<!--              <div class="overlay-content">-->
+<!--                <a href="base.html">Home</a>-->
+<!--                <a href="about.html">About</a>-->
+<!--                <a href="gallery.html">Gallery</a>-->
+<!--                <a href="service.html">Service</a>-->
+<!--                <a href="blog.html">Blog</a>-->
+<!--              </div>-->
+<!--            </div>-->
+</div>
+</div>
+</nav>
+</div>
+</header>
+<!-- end header section -->
+{% if messages %}
+<div id="message-box">
+    <ul class="messages">
+        {% for message in messages %}
+        <li
+                {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}
+        </li>
+        {% endfor %}
+    </ul>
+    <button onclick="closeMessageBox()">X</button>
+</div>
+{% endif %}
+
+
+<!-- slider section -->
+<section class="slider_section position-relative">
+    <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            {% for home in homes %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <div class="img_container">
+                    <div class="img-box">
+                        <img src="{{ home.image.url }}" class="img-fluid" alt="...">
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+<!--        <div class="carousel_btn_box">-->
+<!--            <a class="carousel-control-prev" href="#customCarousel1" role="button" data-slide="prev">-->
+<!--                <i class="fa fa-arrow-left" aria-hidden="true"></i>-->
+<!--                <span class="sr-only">Previous</span>-->
+<!--            </a>-->
+<!--            <a class="carousel-control-next" href="#customCarousel1" role="button" data-slide="next">-->
+<!--                <i class="fa fa-arrow-right" aria-hidden="true"></i>-->
+<!--                <span class="sr-only">Next</span>-->
+<!--            </a>-->
+<!--        </div>-->
+    </div>
+    <style>
+        #customCarousel1 {
+          width: 100%;
+          height: 400px; /* Adjust height as needed */
+        }
+
+        #customCarousel1 .carousel-inner .carousel-item .img-box {
+          width: 100%;
+          height: 100%;
+        }
+
+        #customCarousel1 .carousel-inner .carousel-item .img-box img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover; /* Ensures the image covers the entire container */
+        }
+    </style>
+</section>
+
+<script>
+    // Next tugmasiga bosganda caruselni o'zgartirish
+    $('#customCarousel1').on('click', '.carousel-control-next', function() {
+        $('#customCarousel1').carousel('next');
+    });
+</script>
+
+
+
+
+<!--    <div class="detail-box">-->
+<!--      <div class="col-md-8 col-lg-6 mx-auto">-->
+<!--        <div class="inner_detail-box">-->
+<!--          <h1>-->
+<!--            Biz bilan  <br>-->
+<!--            bog'lanish-->
+<!--          </h1>-->
+<!--          <p>-->
+<!--            Shunchaki biz bilan bog'lanib nima xoxlayotganingizni ayting va biz sizga ko'rinishini chizib beramiz va sizga yoqsa yasab beramiz-->
+<!--          </p>-->
+<!--          <div>-->
+<!--            <a href="" class="slider-link">-->
+<!--              Telefon Raqam-->
+<!--            </a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </section>-->
+<!-- end slider section -->
+
+<!-- about section -->
+
+<!-- about section -->
+{% for about in about %}
+<section class="about_section layout_padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="img-box">
+                    <img src="{{ about.image.url }}" alt="">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="detail-box">
+                    <div class="heading_container">
+                        <h2>{{ about.title }}</h2>
+                    </div>
+                    <p>{{ about.text }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endfor %}
+
+
+<!-- gallery section -->
+<div class="gallery_section layout_padding2">
+    <div class="container-fluid">
+        <div class="heading_container heading_center">
+            <h2>
+                Bizning yasagan mebellarimiz
+            </h2>
+        </div>
+        <div class="row">
+            {% for gallery in gallerys %}
+            <div class="col-sm-6 col-md-3 px-0">
+                <div class="img-box">
+                    <img src="{{ gallery.image.url }}" alt="Gallery Image">
+                    <a href="{{ gallery.image.url }}" data-toggle="lightbox" data-gallery="gallery">
+                        <i class="fa fa-search-plus" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- end gallery section -->
+
+
+<!-- service section -->
+
+<!--  <section class="service_section layout_padding">-->
+<!--    <div class="container">-->
+<!--      <div class="heading_container heading_center">-->
+<!--        <h2>-->
+<!--          Services-->
+<!--        </h2>-->
+<!--      </div>-->
+<!--      <div class="row">-->
+<!--        <div class="col-md-6 col-lg-4 mx-auto">-->
+<!--          <div class="box">-->
+<!--            <div class="img-box">-->
+<!--              <img src="{% static 'images/s1.jpg' %}" alt="">-->
+<!--            </div>-->
+<!--            <div class="detail-box">-->
+<!--              <h5>-->
+<!--                Residential Decoration-->
+<!--              </h5>-->
+<!--              <p>-->
+<!--                Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque distinctio aspernatur officiis exercitationem asperiores praesentium-->
+<!--              </p>-->
+<!--              <a href="">-->
+<!--                Read More-->
+<!--              </a>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="col-md-6 col-lg-4 mx-auto">-->
+<!--          <div class="box">-->
+<!--            <div class="img-box">-->
+<!--              <img src="{% static 'images/s2.jpg' %}" alt="">-->
+<!--            </div>-->
+<!--            <div class="detail-box">-->
+<!--              <h5>-->
+<!--                Ecommercial Decoration-->
+<!--              </h5>-->
+<!--              <p>-->
+<!--                Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque distinctio aspernatur officiis exercitationem asperiores praesentium-->
+<!--              </p>-->
+<!--              <a href="">-->
+<!--                Read More-->
+<!--              </a>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="col-md-6 col-lg-4 mx-auto">-->
+<!--          <div class="box">-->
+<!--            <div class="img-box">-->
+<!--              <img src="{% static 'images/s3.jpg' %}" alt="">-->
+<!--            </div>-->
+<!--            <div class="detail-box">-->
+<!--              <h5>-->
+<!--                Office Decoration-->
+<!--              </h5>-->
+<!--              <p>-->
+<!--                Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque distinctio aspernatur officiis exercitationem asperiores praesentium-->
+<!--              </p>-->
+<!--              <a href="">-->
+<!--                Read More-->
+<!--              </a>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--  </section>-->
+
+<!-- end service section -->
+
+
+<!-- blog section -->
+
+<section class="blog_section ">
+    <div class="container-fluid">
+        <div class="heading_container">
+            <h2>
+                eng so'ngi yasagan mebellarimiz
+            </h2>
+        </div>
+        <div class="row">
+            {% for versia in versias %}
+            <div class="col-lg-6 ">
+                <div class="box">
+                    <div class="img-box">
+                        <img src="{{ versia.image.url }}" alt="">
+                    </div>
+                    <div class="detail-box">
+                        <h5>
+                            {{ versia.title }}
+                        </h5>
+                        <p>
+                            {{ versia.text }}
+                        </p>
+                        <!--              <a href="">-->
+                        <!--                Read More-->
+                        <!--              </a>-->
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- end blog section -->
+
+<!-- client section -->
+
+<!--  <section class="client_section layout_padding">-->
+<!--    <div class="container">-->
+<!--      <div class="heading_container">-->
+<!--        <h2>-->
+<!--          Testimonial-->
+<!--        </h2>-->
+<!--      </div>-->
+<!--      <div id="carouselExample2Controls" class="carousel slide" data-ride="carousel">-->
+<!--        <div class="carousel-inner">-->
+<!--          <div class="carousel-item active">-->
+<!--            <div class="row">-->
+<!--              <div class="col-md-11 col-lg-10 mx-auto">-->
+<!--                <div class="box">-->
+<!--                  <div class="img-box">-->
+<!--                    <img src="{% static 'images/client.jpg' %}" alt="" />-->
+<!--                  </div>-->
+<!--                  <div class="detail-box">-->
+<!--                    <div class="name">-->
+<!--                      <h6>-->
+<!--                        Siaalya-->
+<!--                      </h6>-->
+<!--                    </div>-->
+<!--                    <p>-->
+<!--                      It is a long established fact that a reader will be-->
+<!--                      distracted by the readable cIt is a long established fact-->
+<!--                      that a reader will be distracted by the readable c-->
+<!--                    </p>-->
+<!--                    <i class="fa fa-quote-left" aria-hidden="true"></i>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="carousel-item">-->
+<!--            <div class="row">-->
+<!--              <div class="col-md-11 col-lg-10 mx-auto">-->
+<!--                <div class="box">-->
+<!--                  <div class="img-box">-->
+<!--                    <img src="{% static 'images/client.jpg' %}" alt="" />-->
+<!--                  </div>-->
+<!--                  <div class="detail-box">-->
+<!--                    <div class="name">-->
+<!--                      <h6>-->
+<!--                        Siaalya-->
+<!--                      </h6>-->
+<!--                    </div>-->
+<!--                    <p>-->
+<!--                      It is a long established fact that a reader will be-->
+<!--                      distracted by the readable cIt is a long established fact-->
+<!--                      that a reader will be distracted by the readable c-->
+<!--                    </p>-->
+<!--                    <i class="fa fa-quote-left" aria-hidden="true"></i>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="carousel-item">-->
+<!--            <div class="row">-->
+<!--              <div class="col-md-11 col-lg-10 mx-auto">-->
+<!--                <div class="box">-->
+<!--                  <div class="img-box">-->
+<!--                    <img src="{% static 'images/client.jpg' %}" alt="" />-->
+<!--                  </div>-->
+<!--                  <div class="detail-box">-->
+<!--                    <div class="name">-->
+<!--                      <h6>-->
+<!--                        Siaalya-->
+<!--                      </h6>-->
+<!--                    </div>-->
+<!--                    <p>-->
+<!--                      It is a long established fact that a reader will be-->
+<!--                      distracted by the readable cIt is a long established fact-->
+<!--                      that a reader will be distracted by the readable c-->
+<!--                    </p>-->
+<!--                    <i class="fa fa-quote-left" aria-hidden="true"></i>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="carousel_btn-container">-->
+<!--          <a class="carousel-control-prev" href="#carouselExample2Controls" role="button" data-slide="prev">-->
+<!--            <i class="fa fa-long-arrow-left" aria-hidden="true"></i>-->
+<!--            <span class="sr-only">Previous</span>-->
+<!--          </a>-->
+<!--          <a class="carousel-control-next" href="#carouselExample2Controls" role="button" data-slide="next">-->
+<!--            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>-->
+<!--            <span class="sr-only">Next</span>-->
+<!--          </a>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </section>-->
+
+<!-- end client section -->
+
+<!-- contact section -->
+<section class="contact_section  ">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7 col-lg-6 ">
+                <div class="form_container">
+                    <div class="heading_container ">
+                        <h2>
+                            raqamingizni qoldiring va biz tez orada siz bilan bog'lanamiz
+                        </h2>
+                    </div>
+                    <form onsubmit="sendMessage(); return false;" action="#" , method="post">
+                        {% csrf_token %}
+                        <div>
+                            <input name="ism" type="text" placeholder="Ismingiz"/>
+                        </div>
+                        <div>
+                            <input name="number" type="tel" placeholder="Telefon raqamingiz"/>
+                        </div>
+                        <!--              <div>-->
+                        <!--                <input type="email" placeholder="Email" />-->
+                        <!--              </div>-->
+                        <div>
+                            <input name="message" type="text" class="message-box" placeholder="Xabar qoldiring"/>
+                        </div>
+                        <div class="btn_box">
+                            <button>
+                                yuborish
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-5 col-lg-6">
+                <!--          <div class="subscribe-box">-->
+                <!--            <h3>-->
+                <!--              Subscribe To Our Newsletter-->
+                <!--            </h3>-->
+                <!--            <p>-->
+                <!--              Neque, omnis? Maiores consectetur molestiae assumenda earum ea exercitationem velit tempora molestias quae, neque voluptas magnam maxime, repudiandae voluptatum quaerat tempore accusamus.-->
+                <!--            </p>-->
+                <!--            <form action="">-->
+                <!--              <input type="email" placeholder="Enter your email">-->
+                <!--              <button>-->
+                <!--                Subscribe-->
+                <!--              </button>-->
+                <!--            </form>-->
+                <!--          </div>-->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end contact section -->
+
+<!-- info section -->
+<section class="info_section ">
+    <div class="container">
+        <div class="row info_main_row">
+            <!--        <div class="col-md-6 col-lg-3">-->
+            <!--          <div class="info_insta">-->
+            <!--            <h4>-->
+            <!--              <a href="base.html" class="navbar-brand m-0 p-0">-->
+            <!--                <span>-->
+            <!--                  Shapel-->
+            <!--                </span>-->
+            <!--              </a>-->
+            <!--            </h4>-->
+            <!--            <p class="mb-0">-->
+            <!--              Asperiores at, error, delectus aut voluptatem provident cum quam magni necessitatibus molestias eveniet reprehenderit maiores voluptate.-->
+            <!--            </p>-->
+            <!--          </div>-->
+            <!--        </div>-->
+            <!--        <div class="col-md-6 col-lg-3">-->
+            <!--          <div class="info_detail">-->
+            <!--            <h4>-->
+            <!--              Company-->
+            <!--            </h4>-->
+            <!--            <p class="mb-0">-->
+            <!--              when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to-->
+            <!--            </p>-->
+            <!--          </div>-->
+            <!--        </div>-->
+            <div class="col-md-6 col-lg-3">
+                <h4>
+                    Biz bilan bog'lanish
+                </h4>
+                <div class="info_contact">
+                    <a href="https://yandex.uz/maps/10335/tashkent/?l=stv%2Csta&ll=69.204266%2C41.198571&panorama%5Bdirection%5D=107.208189%2C3.052023&panorama%5Bfull%5D=true&panorama%5Bpoint%5D=69.204032%2C41.198452&panorama%5Bspan%5D=116.050234%2C60.000000&z=21">
+                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                        <span>
+                Manzil
+              </span>
+                    </a>
+                    <a href="">
+                        <i class="fa fa-phone" aria-hidden="true"></i>
+                        <span>
+                +998 (97) 776-00-45  <br>   +998 (99) 806-31-34
+              </span>
+                    </a>
+                    <a href="">
+                        <i class="fa fa-envelope"></i>
+                        <span>
+                abdulloxislomov08@gmail.com
+              </span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <h4>
+                    <!--            Elektron manzillar-->
+                </h4>
+                <div class="social_box">
+                    <a href="https://www.facebook.com/">
+                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://twitter.com/">
+                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://web.telegram.org/k/@abdullox_islomov/">
+                        <i class="fa fa-telegram" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.instagram.com/abdullox.islomov/">
+                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- end info_section -->
+
+
+<!-- footer section -->
+<footer class="footer_section">
+    <div class="container">
+        <p>
+            &copy; <span id="displayYear"></span> Barcha huquqlar
+            <a href="https://google.com/">ximoyalangan</a>
+        </p>
+    </div>
+</footer>
+<!-- footer section -->
+
+
+<!-- jQery -->
+<script src="js/jquery-3.4.1.min.js"></script>
+<!-- bootstrap js -->
+<script src="js/bootstrap.js"></script>
+<!-- lightbox Gallery-->
+<script src="js/ekko-lightbox.min.js"></script>
+<!-- custom js -->
+<script src="js/custom.js"></script>
+
+</body>
+
+</html>
+
+<script>
+        function closeMessageBox() {
+            var messageBox = document.getElementById("message-box");
+            messageBox.style.display = "none";
+        }
+
+        // Suzuvchi oyna 4 sekunddan keyin avtomatik tarzda o'chadi
+        setTimeout(function() {
+            closeMessageBox();
+        }, 4000);
+    </script>
+
+    <style>
+        #message-box {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #f0f0f0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            z-index: 1000; /* Boshqa elementlarning ustida chiqishi uchun */
+        }
+
+        #message-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #message-box li {
+            margin-bottom: 5px;
+        }
+
+        #message-box button {
+            background-color: #ccc;
+            border: none;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
