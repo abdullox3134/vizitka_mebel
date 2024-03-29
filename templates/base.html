@@ -105,48 +105,71 @@
         <div class="carousel-inner">
             {% for home in homes %}
             <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                <div class="img_container">
+                <div class="img_container position-relative">
+                    <!-- Logo rasmni joylash -->
+                    <img src="{% static 'images/aa4.jpeg' %}" class="logo_image" alt="Logo">
                     <div class="img-box">
                         <img src="{{ home.image.url }}" class="img-fluid" alt="...">
+                        <div class="mebel_text">MEBEL</div> <!-- MEBEL yozuvi -->
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
-        <!--        <div class="carousel_btn_box">-->
-        <!--            <a class="carousel-control-prev" href="#customCarousel1" role="button" data-slide="prev">-->
-        <!--                <i class="fa fa-arrow-left" aria-hidden="true"></i>-->
-        <!--                <span class="sr-only">Previous</span>-->
-        <!--            </a>-->
-        <!--            <a class="carousel-control-next" href="#customCarousel1" role="button" data-slide="next">-->
-        <!--                <i class="fa fa-arrow-right" aria-hidden="true"></i>-->
-        <!--                <span class="sr-only">Next</span>-->
-        <!--            </a>-->
-        <!--        </div>-->
     </div>
+
+
     <style>
+        .logo_image {
+    position: absolute;
+    top: 20px; /* Logotipning yuqori chegarasi */
+    left: 20px; /* Logotipning chap chegarasi */
+    z-index: 999; /* Logotipni rasmga nisbatan ustunlik */
+}
+
+.mebel_text {
+    position: absolute;
+    top: 20%; /* MEBEL yozuvi ortasi yuqori chegarasi */
+    left: 19%; /* MEBEL yozuvi ortasi chap chegarasi */
+    transform: translate(-50%, -50%); /* MEBEL yozuvi markazga o'rnatish */
+    z-index: 999; /* MEBEL yozuvi rasmga nisbatan ustunlik */
+    font-size: 44px; /* MEBEL yozuvi o'lchami */
+    font-weight: bold; /* MEBEL yozuvi shovqinini */
+    color: black; /* MEBEL yozuvi rangi */
+}
+
+
+
         #customCarousel1 {
-          width: 100%;
-          height: 400px; /* Adjust height as needed */
+            width: 100%;
+            height: 400px; /* Adjust height as needed */
+        }
+
+        #customCarousel1 .carousel-inner .carousel-item .img_container {
+            position: relative;
+        }
+
+        #customCarousel1 .carousel-inner .carousel-item .img-container .logo_image {
+            position: absolute;
+            top: 10px; /* O'zgartirishingiz kerak bo'lgan joyga moslab turing */
+            left: 10px; /* O'zgartirishingiz kerak bo'lgan joyga moslab turing */
+            z-index: 999; /* Tasvirniki pastki elementlarga uchun */
+            max-width: 100px; /* O'zgartirishingiz kerak bo'lgan tasvirning maksimal o'lchami */
         }
 
         #customCarousel1 .carousel-inner .carousel-item .img-box {
-          width: 100%;
-          height: 100%;
+            width: 100%;
+            height: 100%;
         }
 
         #customCarousel1 .carousel-inner .carousel-item .img-box img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover; /* Ensures the image covers the entire container */
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Tasvirni qutini to'ldirish */
         }
-            .img-box img {
-        width: 100%;
-        height: auto; /* Bu qatorda tasvirning butunini saqlab turish uchun */
-        object-fit: cover; /* Tasvirni qutini to'ldirish */
-    }
     </style>
 </section>
+
 
 <script>
     // Next tugmasiga bosganda caruselni o'zgartirish
