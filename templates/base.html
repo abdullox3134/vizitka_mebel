@@ -310,9 +310,6 @@
             {% for versia in versias %}
             <div class="col-lg-6 ">
                 <div class="box">
-                    <div class="img-box">
-                        <img src="{{ versia.image.url }}" alt="">
-                    </div>
                     <div class="detail-box">
                         <h5>
                             {{ versia.title }}
@@ -324,6 +321,10 @@
                         <!--                Read More-->
                         <!--              </a>-->
                     </div>
+                    <div class="img-box">
+                        <img src="{{ versia.image.url }}" alt="">
+                    </div>
+
                 </div>
             </div>
             {% endfor %}
